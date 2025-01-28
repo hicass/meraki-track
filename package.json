@@ -2,13 +2,17 @@
   "name": "meraki-track",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
-    "dev": "concurrently \"next dev --turbopack\" \"nodemon server.ts\"",
+    "dev": "concurrently --prefix none \"npm run server\" \"npm run client\"",
+    "server": "concurrently --prefix '[server]' --prefixColors green \"nodemon --watch server.ts --exec tsx server.ts\"",
+    "client": "concurrently --prefix '[next]' --prefixColors blue \"next dev --turbopack\"",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.21.2",
     "next": "15.1.6",
     "react": "^19.0.0",
@@ -16,7 +20,9 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
-    "@types/node": "^20",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.0",
+    "@types/node": "^20.17.16",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "concurrently": "^9.1.2",
@@ -24,6 +30,8 @@
     "eslint-config-next": "15.1.6",
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
-    "typescript": "^5"
+    "ts-node": "^10.9.2",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.3"
   }
 }
