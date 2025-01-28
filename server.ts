@@ -1,29 +1,33 @@
-// Import necessary modules
-const express = require('express'); // Express.js for handling HTTP requests
-const next = require('next'); // Next.js for server-side rendering and routing
+import express, { Request, Response } from 'express';
+import next from 'next';
+import cors from 'cors';
 
-// Determine whether the environment is development or production
-const dev = process.env.NODE_ENV !== 'production'; // Set 'dev' to true if not in production
-
-// Create a Next.js app instance with the current environment setting
+// Initialize Next.js
+const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
-
-// Get the request handler for Next.js
 const handle = app.getRequestHandler();
 
-// Create an instance of an Express server
-const server = express();
-
-// Prepare the Next.js app (i.e., initialize it)
+// Wait for Next.js to be ready
 app.prepare().then(() => {
-  // Define Express.js routes and middleware here
+  const server = express();
+  server.use(cors());
 
-  // Start the Express server and listen on port 8000
-  server.listen(8000, (err?: Error) => {
-    // If there’s an error starting the server, throw it
+  // Your custom routes go here
+  server.get('/api/test', (req: Request, res: Response) => {
+    console.log('Test API called!');
+
+    res.json({ message: 'Hello from Express!' });
+  });
+
+  // Handle all Next.js pages and routes
+  server.all('*', (req, res) => {
+    return handle(req, res);
+  });
+
+  // Start the server
+  const PORT = process.env.PORT || 8000;
+  server.listen(PORT, (err?: Error) => {
     if (err) throw err;
-
-    // Log a message when the server is successfully started
-    console.log('> Server ready on http://localhost:8000');
+    console.log(`> Ready on http://localhost:${PORT}`);
   });
 });
