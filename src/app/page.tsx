@@ -1,25 +1,26 @@
 'use client';
-import LoginForm from "@/features/auth/LoginForm";
-import LogoutButton from "@/features/auth/LogoutButton";
-import SignUpForm from "@/features/auth/SignUpForm";
-import { useAuth } from "@/context/AuthContext";
+import { FC } from 'react';
 
-export default function Home() {
+import LogoutButton from '@/features/auth/LogoutButton';
+import { useAuth } from '@/context/AuthContext';
+
+const HomePage: FC = () => {
   const { session } = useAuth();
 
   return (
-    <main>
-    <h1>Hello World!</h1>
+    <main className='border flex flex-col items-center justify-center gap-10 min-h-screen'>
+      <h1>Home Page</h1>
 
-    {session ? (
-        <p>Hello {session.user?.user_metadata.name}!</p>
+      {session ? (
+        <section>
+          <p>Hello {session.user?.user_metadata.name}!</p>
+          <LogoutButton />
+        </section>
       ) : (
         <p>You are not logged in.</p>
       )}
-
-    <SignUpForm />
-    <LoginForm />
-    <LogoutButton />
     </main>
   );
 }
+
+export default HomePage;
