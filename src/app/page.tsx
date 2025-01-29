@@ -1,7 +1,7 @@
 'use client';
-import LoginForm from "@/components/LoginForm";
-import LogoutButton from "@/components/LogoutButton";
-import SignUpForm from "@/components/SignUpForm";
+import LoginForm from "@/features/auth/LoginForm";
+import LogoutButton from "@/features/auth/LogoutButton";
+import SignUpForm from "@/features/auth/SignUpForm";
 import { useAuth } from "@/context/AuthContext";
 
 export default function Home() {
