@@ -7,6 +7,7 @@ const SignUpForm: React.FC = () => {
   const { setSession } = useAuth(); // Access the setSession function from context
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [name, setName] = useState('');
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
@@ -20,6 +21,11 @@ const SignUpForm: React.FC = () => {
       const { data, error } = await supabaseClient.auth.signUp({
         email,
         password,
+        options: {
+          data: {
+            name, // Add name to the user metadata
+          },
+        },
       });
 
       if (error) {
@@ -39,7 +45,7 @@ const SignUpForm: React.FC = () => {
   };
 
   return (
-    <div className='text-black bg-white'>
+    <div className="text-black bg-white">
       <h2>Sign Up</h2>
       <form onSubmit={handleSubmit}>
         <div>
@@ -48,6 +54,15 @@ const SignUpForm: React.FC = () => {
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+        </div>
+        <div>
+          <label>Name:</label>
+          <input
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
             required
           />
         </div>
