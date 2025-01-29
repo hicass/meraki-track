@@ -1,6 +1,6 @@
 'use client';
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import supabase from '@/utils/supabase';
+import supabase from '@/utils/supabase/client';
 import { Session } from '@supabase/supabase-js';
 
 // Create context
@@ -46,7 +46,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     };
   }, []);
 
-  // Ensure we're returning the children wrapped in the AuthContext.Provider
+  // Returning the children wrapped in the AuthContext.Provider
   return (
     <AuthContext.Provider value={{ session, setSession }}>
       {children}
