@@ -8,7 +8,7 @@ const HomePage: FC = () => {
   const { session } = useAuth();
 
   return (
-    <main className='border flex flex-col items-center justify-center gap-10 min-h-screen'>
+    <main className="flex flex-col items-center justify-center gap-10 min-h-screen">
       <h1>Home Page</h1>
 
       {session ? (
@@ -21,6 +21,6 @@ const HomePage: FC = () => {
       )}
     </main>
   );
-}
+};
 
 export default HomePage;
