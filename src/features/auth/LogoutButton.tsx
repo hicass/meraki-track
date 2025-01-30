@@ -24,11 +24,7 @@ const LogoutButton: FC<LoginFormProps> = ({ onLogoutSuccess }) => {
     }
   };
 
-  return (
-    <button onClick={handleLogout}>
-      Log Out
-    </button>
-  );
+  return <button onClick={handleLogout}>Log Out</button>;
 };
 
 export default LogoutButton;
