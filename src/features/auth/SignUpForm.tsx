@@ -1,9 +1,13 @@
 'use client';
-import React, { useState } from 'react';
+import React, { FC, useState } from 'react';
 import { useAuth } from '@/context/AuthContext';
 import supabaseClient from '@/utils/supabase/client';
 
-const SignUpForm: React.FC = () => {
+interface SignupFormProps {
+  onSignupSuccess: () => void;
+}
+
+const SignUpForm: FC<SignupFormProps> = ({ onSignupSuccess }) => {
   const { setSession } = useAuth(); // Access the setSession function from context
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -34,55 +38,66 @@ const SignUpForm: React.FC = () => {
 
       // Update session on successful sign-up
       setSession(data.session);
-
-      // Optionally, redirect or show a success message
-      alert('Sign-up successful!');
-    } catch (error: any) {
-      setError(error.message); // Display error message if sign-up fails
+      onSignupSuccess();
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        setError(error.message); // Display error message if sign-up fails
+      }
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="text-black bg-white">
-      <h2>Sign Up</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Email:</label>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label>Name:</label>
-          <input
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label>Password:</label>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <button type="submit" disabled={loading}>
-            {loading ? 'Signing up...' : 'Sign Up'}
-          </button>
-        </div>
-        {error && <p style={{ color: 'red' }}>{error}</p>}
-      </form>
-    </div>
+    <form
+      onSubmit={handleSubmit}
+      className="bg-white text-black flex flex-col items-end gap-4 p-4"
+    >
+      <div>
+        <label>Email:</label>
+        <input
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+          className="border ml-2"
+        />
+      </div>
+
+      <div>
+        <label>Name:</label>
+        <input
+          type="text"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          required
+          className="border ml-2"
+        />
+      </div>
+
+      <div>
+        <label>Password:</label>
+        <input
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+          className="border ml-2"
+        />
+      </div>
+
+      <div>
+        <button
+          type="submit"
+          disabled={loading}
+          className="bg-gray-200 p-2 hover:bg-gray-300"
+        >
+          {loading ? 'Signing up...' : 'Sign Up'}
+        </button>
+      </div>
+      
+      {error && <p style={{ color: 'red' }}>{error}</p>}
+    </form>
   );
 };
 
