@@ -7,6 +7,7 @@ import { useAuth } from '@/context/AuthContext';
 
 const HomePage: FC = () => {
   const { session } = useAuth();
+  const userName = session?.user?.user_metadata.name;
 
   return (
     <main className="flex flex-col items-center justify-center gap-10 min-h-screen">
@@ -14,7 +15,7 @@ const HomePage: FC = () => {
 
       {session ? (
         <section>
-          <p>Hello {session.user?.user_metadata.name}!</p>
+          <p>Hello {userName}!</p>
         </section>
       ) : (
         <section className="flex items-center flex-col gap-4">
