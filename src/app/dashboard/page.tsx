@@ -10,6 +10,7 @@ import LogoutButton from '@/features/auth/LogoutButton';
 const DashboardPage: FC = () => {
   const { session } = useAuth();
   const router = useRouter();
+  const userName = session?.user?.user_metadata.name;
 
   const handleLogoutSuccess = () => {
     // After successful logout, navigate to the homepage
@@ -22,7 +23,7 @@ const DashboardPage: FC = () => {
 
       {session ? (
         <section>
-          <p>Hello {session.user?.user_metadata.name}!</p>
+          <p>Hello {userName}!</p>
           <LogoutButton onLogoutSuccess={handleLogoutSuccess} />
         </section>
       ) : (
