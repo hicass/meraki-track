@@ -18,7 +18,7 @@ const DashboardPage: FC = () => {
   };
 
   return (
-    <main className="flex flex-col items-center justify-center gap-10 min-h-screen">
+    <section className="border flex flex-col items-center justify-center gap-10 min-h-screen">
       <h1 className="text-4xl font-bold">Welcome to your dashboard</h1>
 
       {session ? (
@@ -35,7 +35,7 @@ const DashboardPage: FC = () => {
           </Link>
         </section>
       )}
-    </main>
+    </section>
   );
 };
 
