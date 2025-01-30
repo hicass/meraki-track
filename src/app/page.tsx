@@ -4,7 +4,6 @@ import { FC } from 'react';
 import Link from 'next/link';
 
 import { useAuth } from '@/context/AuthContext';
-import LogoutButton from '@/features/auth/LogoutButton';
 
 const HomePage: FC = () => {
   const { session } = useAuth();
@@ -16,7 +15,6 @@ const HomePage: FC = () => {
       {session ? (
         <section>
           <p>Hello {session.user?.user_metadata.name}!</p>
-          <LogoutButton />
         </section>
       ) : (
         <section className="flex items-center flex-col gap-4">

@@ -10,7 +10,7 @@ const SignupPage: FC = () => {
   const router = useRouter();
 
   const handleSignupSuccess = () => {
-    // After successful login, navigate to the dashboard
+    // After successful signup, navigate to the dashboard
     router.push('/dashboard');
   };
 
