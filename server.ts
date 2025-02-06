@@ -1,4 +1,5 @@
-import express, { Request, Response } from 'express';
+import express, { Request, Response, json } from 'express';
+import logger from 'morgan';
 import next from 'next';
 import cors from 'cors';
 
@@ -12,7 +13,9 @@ const handle = app.getRequestHandler();
 // Wait for Next.js to be ready
 app.prepare().then(() => {
   const server = express();
+  server.use(logger('dev'));
   server.use(cors());
+  server.use(json());
 
   // Custom Middleware
   server.use('/api/job-applications', jobApplicationsRoute);
