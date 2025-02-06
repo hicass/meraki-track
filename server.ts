@@ -1,6 +1,9 @@
-import express, { Request, Response } from 'express';
+import express, { Request, Response, json } from 'express';
+import logger from 'morgan';
 import next from 'next';
 import cors from 'cors';
+
+import jobApplicationsRoute from './routes/api/job-applications';
 
 // Initialize Next.js
 const dev = process.env.NODE_ENV !== 'production';
@@ -10,17 +13,15 @@ const handle = app.getRequestHandler();
 // Wait for Next.js to be ready
 app.prepare().then(() => {
   const server = express();
+  server.use(logger('dev'));
   server.use(cors());
+  server.use(json());
 
-  // Your custom routes go here
-  server.get('/api/test', (req: Request, res: Response) => {
-    console.log('Test API called!');
-
-    res.json({ message: 'Hello from Express!' });
-  });
+  // Custom Middleware
+  server.use('/api/job-applications', jobApplicationsRoute);
 
   // Handle all Next.js pages and routes
-  server.all('*', (req, res) => {
+  server.all('*', (req: Request, res: Response) => {
     return handle(req, res);
   });
 
