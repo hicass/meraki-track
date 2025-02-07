@@ -3,26 +3,26 @@
 import { FC, useState } from 'react';
 
 import { useAuth } from '@/context/AuthContext';
-import { createJobApp } from '@/features/dashboard/job-applications/api/create-job-application';
+import { createJobApplication } from '@/features/dashboard/job-applications/api/create-job-application';
 import JobApplicationForm from '@/features/dashboard/job-applications/components/JobApplicationForm';
 
 const DashboardPage: FC = () => {
   const { session } = useAuth();
   const userName = session?.user?.user_metadata.name;
-  const [newJobAppInfo, setNewJobAppInfo] = useState({
+  const [newJobApplicationInfo, setNewJobApplicationInfo] = useState({
     companyName: '',
   });
 
   function handleFormChange(e: React.ChangeEvent<HTMLInputElement>) {
-    setNewJobAppInfo({
-      ...newJobAppInfo,
+    setNewJobApplicationInfo({
+      ...newJobApplicationInfo,
       [e.target.name]: e.target.value,
     });
   }
 
   async function handleFormSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    await createJobApp(newJobAppInfo);
+    await createJobApplication(newJobApplicationInfo);
   }
 
   return (
@@ -34,7 +34,7 @@ const DashboardPage: FC = () => {
       <JobApplicationForm
         handleFormChange={handleFormChange}
         handleFormSubmit={handleFormSubmit}
-        {...newJobAppInfo}
+        {...newJobApplicationInfo}
       />
     </section>
   );
