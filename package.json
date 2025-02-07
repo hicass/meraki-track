@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "concurrently --prefix none \"npm run server\" \"npm run client\"",
-    "server": "concurrently --prefix '[server]' --prefixColors green \"nodemon --watch server.ts --exec tsx server.ts\"",
-    "client": "concurrently --prefix '[next]' --prefixColors blue \"next dev --turbopack\"",
+    "server": "concurrently --prefix '[server]' --prefixColors green \"nodemon --watch backend/server.ts --exec tsx backend/server.ts\"",
+    "client": "concurrently --prefix '[next]' --prefixColors blue \"cd frontend && next dev --turbopack\"",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
