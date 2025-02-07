@@ -1,11 +1,11 @@
 import { Request, Response } from 'express';
-import { createJobApp } from './jobApplications.service';
+import { createJobApplication } from './jobApplications.service';
 
-export async function addJobApp(req: Request, res: Response) {
+export async function handleCreateJobApplication(req: Request, res: Response) {
   const body = req.body;
 
   try {
-    const newJobApp = await createJobApp(body);
+    const newJobApp = await createJobApplication(body);
     res.status(201).json(newJobApp);
   } catch (error) {
     console.error('controller error: ', error);

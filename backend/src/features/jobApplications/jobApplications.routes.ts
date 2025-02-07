@@ -1,8 +1,8 @@
 import express from 'express';
-import { addJobApp } from './jobApplications.handlers';
+import { handleCreateJobApplication } from './jobApplications.handlers';
 
 const router = express.Router();
 
-router.post('/new', addJobApp);
+router.post('/new', handleCreateJobApplication);
 
 export default router;
