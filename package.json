@@ -4,9 +4,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "concurrently --prefix none \"npm run server\" \"npm run client\"",
-    "server": "concurrently --prefix '[server]' --prefixColors green \"nodemon --watch server.ts --exec tsx server.ts\"",
-    "client": "concurrently --prefix '[next]' --prefixColors blue \"next dev --turbopack\"",
+    "dev": "concurrently --prefix none \"npm run frontend\" \"npm run backend\"",
+    "frontend": "concurrently --prefix '[backend]' --prefixColors green \"nodemon --watch backend/src/server.ts --exec tsx backend/src/server.ts\"",
+    "backend": "concurrently --prefix '[frontend]' --prefixColors blue \"cd frontend && next dev --turbopack\"",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
