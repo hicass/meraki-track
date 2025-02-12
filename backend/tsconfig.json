@@ -32,8 +32,8 @@
   "include": [
     "**/*.ts",
     "**/*.tsx",
-    "frontend/.next/types/**/*.ts",
-    "frontend/next-env.d.ts",
+    "backend/.next/types/**/*.ts",
+    "backend/next-env.d.ts",
     "server.ts",
     ".next/types/**/*.ts"
   ],

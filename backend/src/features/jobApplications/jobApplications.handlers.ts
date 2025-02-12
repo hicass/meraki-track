@@ -4,6 +4,8 @@ import { createJobApplication } from './jobApplications.service';
 export async function handleCreateJobApplication(req: Request, res: Response) {
   const body = req.body;
 
+  console.log(body)
+
   try {
     const newJobApp = await createJobApplication(body);
     res.status(201).json(newJobApp);
