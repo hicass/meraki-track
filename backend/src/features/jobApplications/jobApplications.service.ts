@@ -1,11 +1,12 @@
-import prisma from "../../config/prisma/prismaClient";
-import { JobApplication } from "../../types/jobApplication";
-
+import prisma from '../../config/prisma/prismaClient';
+import { JobApplication } from '../../types/jobApplication';
 
 export const createJobApplication = async ({ companyName }: JobApplication) => {
-  return prisma.jobApplication.create({
+  const job = await prisma.jobApplication.create({
     data: {
       companyName,
     },
   });
+
+  return job;
 };

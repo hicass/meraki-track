@@ -1,33 +1,27 @@
 import express, { Request, Response, json } from 'express';
 import logger from 'morgan';
-import next from 'next';
 import cors from 'cors';
 import routes from './routes';
+import dotenv from 'dotenv';
 
-// Initialize Next.js
-const dev = process.env.NODE_ENV !== 'production';
-const app = next({ dev, dir: './frontend' });
-const handle = app.getRequestHandler();
+// Initialize Express server
+const server = express();
 
-// Wait for Next.js to be ready
-app.prepare().then(() => {
-  const server = express();
-  server.use(logger('dev'));
-  server.use(cors());
-  server.use(json());
-  server.use(express.urlencoded({ extended: true }));
+// Middleware setup
+server.use(logger('dev'));
+server.use(cors());
+server.use(json());
+server.use(express.urlencoded({ extended: true }));
 
-  server.use('/api', routes);
+// Load environment variables
+dotenv.config();
 
-  // Handle all Next.js pages and routes
-  server.all('./frontend/*', (req: Request, res: Response) => {
-    return handle(req, res);
-  });
+// API routes
+server.use('/api', routes);
 
-  // Start the server
-  const PORT = process.env.PORT || 8000;
-  server.listen(PORT, (err?: Error) => {
-    if (err) throw err;
-    console.log(`Ready on http://localhost:${PORT}`);
-  });
+// Start the server
+const PORT = process.env.PORT || 8000;
+server.listen(PORT, (err?: Error) => {
+  if (err) throw err;
+  console.log(`Server is ready on http://localhost:${PORT}`);
 });
