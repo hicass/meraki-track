@@ -15,7 +15,6 @@ server.use(express.urlencoded({ extended: true }));
 
 // Load environment variables
 dotenv.config();
-console.log('Server variable:', process.env.SERVER_VARIABLE);
 
 // API routes
 server.use('/api', routes);
