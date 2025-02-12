@@ -6,8 +6,8 @@
   "type": "module",
   "scripts": {
     "dev": "concurrently --prefix none \"npm run frontend\" \"npm run backend\"",
-    "frontend": "concurrently --prefix '[backend]' --prefixColors green \"nodemon --watch backend/src/server.ts --exec tsx backend/src/server.ts\"",
-    "backend": "concurrently --prefix '[frontend]' --prefixColors blue \"cd frontend && npm run dev --turbopack\""
+    "backend": "concurrently --prefix '[backend]' --prefixColors green \"cd backend && nodemon --watch src/server.ts --exec tsx src/server.ts\"",
+    "frontend": "concurrently --prefix '[frontend]' --prefixColors blue \"cd frontend && npm run dev --turbopack\""
   },
   "devDependencies": {
     "concurrently": "^9.1.2",
