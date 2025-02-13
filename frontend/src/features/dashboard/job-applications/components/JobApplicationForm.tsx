@@ -18,7 +18,7 @@ const JobApplicationForm: FC<JobApplicationFormProps> = ({
       className="flex flex-col gap-2 p-2 bg-white text-black"
       onSubmit={handleFormSubmit}
     >
-      <label>Company Name:</label>
+      <label htmlFor="companyName">Company Name:</label>
       <input
         type="text"
         name="companyName"
