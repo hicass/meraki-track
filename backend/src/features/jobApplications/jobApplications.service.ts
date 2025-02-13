@@ -1,4 +1,4 @@
-import prisma from '../../config/prisma/prismaClient';
+import prisma from '@/src/config/prisma/prismaClient';
 import { JobApplication } from '../../types/jobApplication';
 
 export const createJobApplication = async ({ companyName }: JobApplication) => {
@@ -7,6 +7,6 @@ export const createJobApplication = async ({ companyName }: JobApplication) => {
       companyName,
     },
   });
-
+  
   return job;
 };
