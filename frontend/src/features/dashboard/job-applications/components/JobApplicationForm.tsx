@@ -20,6 +20,7 @@ const JobApplicationForm: FC<JobApplicationFormProps> = ({
     >
       <label htmlFor="companyName">Company Name:</label>
       <input
+        id="companyName"
         type="text"
         name="companyName"
         value={companyName}
