@@ -10,7 +10,7 @@ const JobApplicationListTable: FC<JobApplicationListTableProps> = ({
 }) => {
   const applicationElements = applications.map((application) => (
     <tr key={application.id}>
-      <td>{application.companyName}</td>
+      <td className='border-r-white border-r-[0.5px] border-b-white border-b-[0.5px] p-2'>{application.companyName}</td>
     </tr>
   ));
 
@@ -22,7 +22,7 @@ const JobApplicationListTable: FC<JobApplicationListTableProps> = ({
     <table>
       <thead>
         <tr>
-          <th>Company Name</th>
+          <th className='border-r-white border-r-[0.5px] border-b-white border-b-[0.5px] p-2'>Company Name</th>
         </tr>
       </thead>
       <tbody>{applicationElements}</tbody>
