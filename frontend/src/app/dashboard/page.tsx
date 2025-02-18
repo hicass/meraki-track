@@ -1,17 +1,31 @@
 'use client';
 
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 
 import { useAuth } from '@/context/AuthContext';
 import { createJobApplication } from '@/features/dashboard/job-applications/api/create-job-application';
 import JobApplicationForm from '@/features/dashboard/job-applications/components/JobApplicationForm';
+import JobApplicationListTable from '@/features/dashboard/job-applications/components/JobApplicationListTable';
+import { JobApplication } from 'types/jobApplication';
+import { getJobApplications } from '@/features/dashboard/job-applications/api/get-job-applications';
 
 const DashboardPage: FC = () => {
   const { session } = useAuth();
   const userName = session?.user?.user_metadata.name;
+  const [jobApplications, setJobApplications] = useState<JobApplication[]>([]);
   const [newJobApplicationInfo, setNewJobApplicationInfo] = useState({
     companyName: '',
   });
+
+  async function handleGetJobApplications() {
+    const result = await getJobApplications();
+
+    setJobApplications(result)
+  }
+
+  useEffect(() => {
+    handleGetJobApplications()
+  }, [])
 
   function handleFormChange(e: React.ChangeEvent<HTMLInputElement>) {
     setNewJobApplicationInfo({
@@ -30,6 +44,8 @@ const DashboardPage: FC = () => {
       <h1 className="text-4xl font-bold">
         Welcome to your dashboard {userName}
       </h1>
+
+      <JobApplicationListTable jobApplications={jobApplications} />
 
       <JobApplicationForm
         handleFormChange={handleFormChange}
