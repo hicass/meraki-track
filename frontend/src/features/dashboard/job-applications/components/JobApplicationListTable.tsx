@@ -2,19 +2,19 @@ import { FC } from 'react';
 import { JobApplication } from 'types/jobApplication';
 
 interface JobApplicationListTableProps {
-  applications: JobApplication[];
+  jobApplications: JobApplication[];
 }
 
 const JobApplicationListTable: FC<JobApplicationListTableProps> = ({
-  applications,
+  jobApplications,
 }) => {
-  const applicationElements = applications.map((application) => (
+  const applicationElements = jobApplications.map((application) => (
     <tr key={application.id}>
       <td className='border-r-white border-r-[0.5px] border-b-white border-b-[0.5px] p-2'>{application.companyName}</td>
     </tr>
   ));
 
-  if (!applications.length){
+  if (!jobApplications.length){
     return <p>No job applications found.</p>
   } 
 
