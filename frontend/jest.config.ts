@@ -5,7 +5,7 @@ const jestConfig: Config = {
   testEnvironment: 'jest-environment-jsdom',
   setupFilesAfterEnv: ['<rootDir>/setupTests.ts'],
   transform: {
-    '^.+\\.(ts|tsx)?$': 'ts-jest', // Fix regex to correctly match TypeScript files
+    '^.+\\.(ts|tsx)?$': ['ts-jest', { tsconfig: 'tsconfig.jest.json' }], // Fix regex to correctly match TypeScript files
   },
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1', // If using absolute imports
