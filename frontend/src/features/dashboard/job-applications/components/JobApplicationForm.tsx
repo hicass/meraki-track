@@ -1,9 +1,9 @@
 import { FC } from 'react';
 
 import { FormSubmitHandler, OnChangeHandler } from 'types/handlers';
-import { JobApplication } from 'types/jobApplication';
+import { NewJobApplication } from 'types/jobApplication';
 
-interface JobApplicationFormProps extends JobApplication {
+interface JobApplicationFormProps extends NewJobApplication {
   handleFormChange: OnChangeHandler;
   handleFormSubmit: FormSubmitHandler;
 }
