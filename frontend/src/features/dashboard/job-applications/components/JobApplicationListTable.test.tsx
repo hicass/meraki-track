@@ -10,7 +10,7 @@ describe('JobApplicationListTable', () => {
     ];
 
     beforeEach(() => {
-      render(<JobApplicationListTable applications={mockApplications} />);
+      render(<JobApplicationListTable jobApplications={mockApplications} />);
     });
 
     it('should render a table with the correct number of rows', () => {
@@ -28,7 +28,7 @@ describe('JobApplicationListTable', () => {
 
   describe('When there are no job applications', () => {
     beforeEach(() => {
-      render(<JobApplicationListTable applications={[]} />);
+      render(<JobApplicationListTable jobApplications={[]} />);
     });
 
     it('should show an empty state message', () => {
