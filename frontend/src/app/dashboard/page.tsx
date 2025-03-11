@@ -8,6 +8,7 @@ import JobApplicationForm from '@/features/dashboard/job-applications/components
 import JobApplicationListTable from '@/features/dashboard/job-applications/components/JobApplicationListTable';
 import { JobApplication } from 'types/jobApplication';
 import { getJobApplications } from '@/features/dashboard/job-applications/api/get-job-applications';
+import { deleteJobApplication } from '@/features/dashboard/job-applications/api/delete-job-application';
 
 const DashboardPage: FC = () => {
   const { session } = useAuth();
@@ -21,6 +22,12 @@ const DashboardPage: FC = () => {
     const result = await getJobApplications();
 
     setJobApplications(result)
+  }
+
+  async function handleDeleteJobApplication(postId: number) {
+    const result = await deleteJobApplication(postId);
+
+    console.log(result);
   }
 
   useEffect(() => {
@@ -45,7 +52,7 @@ const DashboardPage: FC = () => {
         Welcome to your dashboard {userName}
       </h1>
 
-      <JobApplicationListTable jobApplications={jobApplications} />
+      <JobApplicationListTable jobApplications={jobApplications} handleDeleteJobApplication={handleDeleteJobApplication} />
 
       <JobApplicationForm
         handleFormChange={handleFormChange}
