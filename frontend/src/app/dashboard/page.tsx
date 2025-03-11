@@ -27,7 +27,7 @@ const DashboardPage: FC = () => {
   async function handleDeleteJobApplication(postId: number) {
     const result = await deleteJobApplication(postId);
 
-    console.log(result);
+    setJobApplications(result)
   }
 
   useEffect(() => {
