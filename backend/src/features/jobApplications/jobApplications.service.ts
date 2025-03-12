@@ -19,3 +19,16 @@ export const createJobApplication = async ({
 
   return job;
 };
+
+export const deleteJobApplication = async (postId: number) => {
+  await prisma.jobApplication.delete({
+    where: {
+      id: postId,
+    },
+  });
+
+  const updatedJobApplications: JobApplication[] =
+    await prisma.jobApplication.findMany();
+
+  return updatedJobApplications;
+};

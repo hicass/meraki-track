@@ -3,5 +3,5 @@ export type NewJobApplication = {
 };
 
 export type JobApplication = NewJobApplication & {
-  companyName: string;
+  id: number;
 };
